@@ -52,7 +52,7 @@ int LIS_dp(vector<int> &nums)
 
 
 // The best solution to find LIS is in O(nlogn) time complexity :
-// It uses
+// It uses binary search.(lower bound)
 int LIS_n_log_n(vector<int> &nums)
 {
     vector<int> res;
