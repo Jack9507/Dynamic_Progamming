@@ -1,3 +1,49 @@
+// Coin Change 1- 
+
+/*
+Time Complexity  : O(A*C)
+Space Complexity : O(A)
+*/
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) 
+    {
+        sort(coins.begin(), coins.end());
+        vector<int> dp(amount+1, 1e5);   // filling the array with some max value because we need to minimize the answer  
+        dp[0]=0;        //  coins required to make amount zero.
+        
+        for(int i=1; i<=amount; i++)
+        {
+            for(int j=0; j<coins.size(); j++)
+            {
+                if(coins[j] < i)   // if the coin value is less than the current amt then we can use that coin
+                    dp[i] = min(dp[i], 1+ dp[i -coins[j]]);
+                else if(i == coins[j])        // if the coin value is equal to amt then we just need 1 coin.
+                    dp[i] =1;
+                else
+                    break; 
+            }
+        }
+        
+        return dp[amount] ==1e5 ? -1 : dp[amount] ;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Coin Change 2 -
 /* Dynamic Programming Solution
 Time Complexity : O(A * C), where 'A' is amount given and 'C' is number fo coins.
 Space Complexity : O(A * C), Dp matrix of size A+1, C+1 used to store results.
